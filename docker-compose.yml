@@ -2,7 +2,13 @@ master:
   build: ./master
   links: 
     - redis
-  name: rhpcmaster
+  command: R
+
 redis:
   image: redis
   container_name: redis
+
+slave:
+  build: ./master
+  links:
+    - redis
