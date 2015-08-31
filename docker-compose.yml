@@ -1,0 +1,8 @@
+master:
+  build: ./master
+  links: 
+    - redis
+  name: rhpcmaster
+redis:
+  image: redis
+  container_name: redis
