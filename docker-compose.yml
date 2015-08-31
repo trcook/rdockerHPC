@@ -1,14 +1,16 @@
 master:
-  build: ./master
+  build: ./docker
   links: 
     - redis
   command: R
+  volumes: 
+    - ./data:/data
 
 redis:
   image: redis
   container_name: redis
 
 slave:
-  build: ./master
+  build: ./docker
   links:
     - redis
