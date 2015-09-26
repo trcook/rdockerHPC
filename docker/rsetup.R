@@ -2,12 +2,12 @@ packages<-c(
 "devtools",
 "RCurl",
 "MatchIt",
-"Zelig"
+"Zelig",
+"doRedis"
 )
 
-for(i in packages){
-	install.packages(i)
-}
+
+install.packages(packages)
 
 require('devtools')
 install_github(repo="trcook/tmisc",subdir="tmisc")

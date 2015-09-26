@@ -1,4 +1,0 @@
-options('redis:num'=TRUE)
-require(doRedis)
-try(redisConnect(host='redis',nodelay=T),silent=T)
-redisConnect(host='redis')

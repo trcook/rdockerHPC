@@ -9,9 +9,8 @@ RUN mkdir /rsetup
 ADD ./rsetup.R /rsetup/rsetup.R
 RUN Rscript /rsetup/rsetup.R
 RUN Rscript -e 'install.packages("doRedis")'
-ADD ./Rprofile /root/.Rprofile
-CMD Rscript -e "require('doRedis');try(redisWorker(host='redis',queue='jobs'));redisWorker(host='redis',queue='jobs')"
-
+ADD ./Rprofile_master /root/.Rprofile
+CMD R --nosave
 
 
 

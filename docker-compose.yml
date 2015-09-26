@@ -1,5 +1,6 @@
 master:
   build: ./docker
+  dockerfile: Dockerfile_master
   links: 
     - redis
   command: R
@@ -12,5 +13,6 @@ redis:
 
 slave:
   build: ./docker
+  dockerfile: Dockerfile_slave
   links:
     - redis

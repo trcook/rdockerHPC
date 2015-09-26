@@ -1,0 +1,17 @@
+options('redis:num'=TRUE)
+require(doRedis)
+
+
+
+
+
+.First <- function(){
+library(doRedis)
+try(redisWorker(host='redis',queue='jobs'),silent=T)
+redisWorker(host='redis',queue='jobs')
+
+}
+# This needs to end on an empty line!!!!!!
+
+
+

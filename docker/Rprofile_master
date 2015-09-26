@@ -1,0 +1,9 @@
+options('redis:num'=TRUE)
+require(doRedis)
+
+.First<-function(){
+try(registerDoRedis(host='redis', queue='jobs'),silent=T)
+registerDoRedis(host='redis', queue='jobs')
+}
+
+
