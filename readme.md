@@ -5,11 +5,21 @@ Pretty easy setup here:  edit rsetup.R with additional packages. Add components 
 
 
 to run: 
-run docker-compose up -d slave
-run docker-compose run master
+```{bash}
+$ docker-compose up -d slave
+$ docker-compose run master
+```
 
 to scale (replace n with desired number of nodes): 
-docker-compose scale slave=n
+
+```{bash}
+$ docker-compose scale slave=n
+```
 
 So, to create 2 additional slave nodes: 
+
+```{bash}
 docker-compose scale slave=2
+```
+
+
