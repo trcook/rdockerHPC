@@ -21,5 +21,3 @@ So, to create 2 additional slave nodes:
 ```{bash}
 docker-compose scale slave=2
 ```
-
-

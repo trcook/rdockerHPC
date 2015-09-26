@@ -10,7 +10,7 @@ ADD ./rsetup.R /rsetup/rsetup.R
 RUN Rscript /rsetup/rsetup.R
 
 ADD ./Rprofile_master /root/.Rprofile
-CMD R --nosave
+CMD R --no-save
 
 
 
