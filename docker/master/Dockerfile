@@ -8,7 +8,7 @@ RUN mkdir /rsetup
 
 ADD ./rsetup.R /rsetup/rsetup.R
 RUN Rscript /rsetup/rsetup.R
-RUN Rscript -e 'install.packages("doRedis")'
+
 ADD ./Rprofile_master /root/.Rprofile
 CMD R --nosave
 
