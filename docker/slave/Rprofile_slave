@@ -1,7 +1,8 @@
 options('redis:num'=TRUE)
 require(doRedis)
 
-
+library(base)
+library(stats)
 
 
 

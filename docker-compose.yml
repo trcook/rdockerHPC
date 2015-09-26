@@ -1,9 +1,7 @@
 master:
-  build: ./docker
-  dockerfile: Dockerfile_master
+  build: ./docker/master
   links: 
     - redis
-  command: R
   volumes: 
     - ./data:/data
 
@@ -12,7 +10,6 @@ redis:
   container_name: redis
 
 slave:
-  build: ./docker
-  dockerfile: Dockerfile_slave
+  build: ./docker/slave
   links:
     - redis
