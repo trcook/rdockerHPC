@@ -1,20 +1,22 @@
 master:
   image: trcook/rdockerhpc_master
   # build: ./docker/master
-  external_links: 
+  links: 
     - redis
   volumes: 
     - ./data:/data
 
-# redis:
-#   image: redis
-#   container_name: redis
+redis:
+    image: redis
+    container_name: redis
+    ports: 
+      - "6379:6379"
 
 
 slave:
   image: trcook/rdockerhpc_slave
   # build: ./docker/slave
-  external_links:
+  links:
     - redis
   environment:
      - "affinity:container!=redis"
