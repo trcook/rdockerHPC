@@ -121,3 +121,16 @@ $ ./kubernetes/cluster/kubectl.sh exec rmaster -- Rscript -e \
 "require(doRedis);registerDoRedis(host='redis',queue='jobs');foreach(i=i:100)%dopar% runif(1)"
 ```
 
+Or you could expose the redis service, enabling you to remotely send jobs to the cloud of workers. (This would require changing redis_service.yaml) To get the port -- consult kubectl get svc -o yaml
+
+At that point, you could pretty easily just register with redis using the external ip and port for the kubernetes redis service. 
+This is not trivial as it potentially lets you set up an army of eager workers in the cloud with redis ready to coordinate. Then, when appropriate, you can dial-in to the redis service remotely (say, from your laptop or -- even your local rstudio) and send off a huge job. At the moment, however, you would probably need to remain connected to redis until the job finished. 
+
+
+To Scale, using kubernetes, we just run: 
+
+```{bash}
+./kubernetes/cluster/kubectl.sh scale --replicas=3 rc/rslave-rc
+```
+
+where this will create 3 new workers, running under the rslave-rc. Since the rslave-rc is built to query the redis service, we don't need to worry about setting it up as a service or accessing it externally. Instead, rslave-rc replicas (i.e. pods controlled and provisioned by rslave-rc) will signup with the redis service and have exclusive communication with it. 

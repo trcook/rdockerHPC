@@ -5,6 +5,9 @@ metadata:
   labels:
     name: redis-svc
 spec:
+  # Uncomment next line if you want to expose redis to the wilds of the internet -- also useful for accessing this service as a cloud of remote mercenaries from your lappy
+  # type: NodePort
+  # get the actual exposed port from  That port will be reported in your Service's spec.ports[*].nodePort field.
   ports:
     # the port that this service should serve on
   - port: 6379
