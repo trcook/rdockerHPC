@@ -1,5 +1,6 @@
 master:
   image: trcook/rdockerhpc_master
+  # swap comments on image and build to get docker-compose to build instead of download
   # build: ./docker/master
   links: 
     - redis
@@ -15,6 +16,7 @@ redis:
 
 slave:
   image: trcook/rdockerhpc_slave
+  # swap comments on image and build to get docker-compose to build instead of download
   # build: ./docker/slave
   links:
     - redis
