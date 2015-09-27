@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rmaster
+  labels:
+    name: rmaster
+spec:
+  restartPolicy: Never
+  containers:
+    - name: rmaster
+      image: "trcook/rdockerhpc_master"
+      # command: ["R","--no-save"]
+      command: ["sleep", "1200"]
+
+

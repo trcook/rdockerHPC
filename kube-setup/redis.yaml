@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: redis-svc
+  labels:
+    name: redis-svc
+spec:
+  replicas: 1
+  selector:
+    name: redis-svc
+  template:
+    metadata:
+      labels:
+        name: redis-svc
+    spec:
+      containers:
+      - name: redis
+        image: redis
+        ports:
+        - containerPort: 6379

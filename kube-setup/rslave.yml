@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rslave-rc
+  labels:
+    name: rdocker-hpc-slave
+spec:
+  replicas: 1
+  selector:
+    name: rslave
+    # sets groups for load balancing
+  template:
+    metadata:
+      labels:
+        name: rslave
+        # pods will be named rslave-xxxxx where xxxxx is some random gibberish
+    spec:
+      containers:
+      - name: rdockerslave
+        image: trcook/rdockerhpc_slave
+
+
+
+
