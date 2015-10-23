@@ -16,7 +16,7 @@ spec:
         # pods will be named rslave-xxxxx where xxxxx is some random gibberish
     spec:
       containers:
-      - name: rdockerslave
+      - name: rdockerhpc-slave
         image: trcook/rdockerhpc_slave
 
 
