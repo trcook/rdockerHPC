@@ -15,10 +15,10 @@ redis:
       
 
 
-slave:
-  image: trcook/rdockerhpc_slave
+worker:
+  image: trcook/rdockerhpc_worker
   # swap comments on image and build to get docker-compose to build instead of download
-  # build: ./docker/slave
+  # build: ./docker/worker
   links:
     - redis
   environment:

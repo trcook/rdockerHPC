@@ -6,20 +6,20 @@ Pretty easy setup here:  edit rsetup.R with additional packages. Add components 
 
 to run: 
 ```{bash}
-$ docker-compose up -d slave
+$ docker-compose up -d worker
 $ docker-compose run master
 ```
 
 to scale (replace n with desired number of nodes): 
 
 ```{bash}
-$ docker-compose scale slave=n
+$ docker-compose scale worker=n
 ```
 
-So, to create 2 additional slave nodes: 
+So, to create 2 additional worker nodes: 
 
 ```{bash}
-docker-compose scale slave=2
+docker-compose scale worker=2
 ```
 
 
@@ -51,7 +51,7 @@ From bash:
 
 ```{bash}
 # start one worker process. will start redis if not running
-$ docker-compose up -d slave 
+$ docker-compose up -d worker 
 # launch into the master node with R:
 $ docker-compose run master 
 ```
@@ -62,7 +62,7 @@ foreach(i=1:100)%dopar%{runif(1)}
 
 To scale, and add new processes, go back to bash and:
 ```{bash}
-docker-compose scale slave=6
+docker-compose scale worker=6
 ```
 
 This will kill or launch worker containers as needed to get to 6 total. Because
@@ -99,7 +99,7 @@ $ ./kubernetes/cluster/kubectl.sh create -f ./kube-setup/redis.yaml
 $ ./kubernetes/cluster/kubectl.sh create -f ./kube-setup/redis_service.yaml 
 
 # provision our worker process
-$ ./kubernetes/cluster/kubectl.sh create -f ./kube-setup/rslave.yml 
+$ ./kubernetes/cluster/kubectl.sh create -f ./kube-setup/rworker.yml 
 ```
 
 At the moment, I'm still working out the best way to expose the interface to user input. Because cloud computing is expensive, it's probably worth setting this up to take in a script, but alternatives might include using the rstudio docker image here, instead of the bare r-base image I use here.
@@ -130,7 +130,7 @@ This is not trivial as it potentially lets you set up an army of eager workers i
 To Scale, using kubernetes, we just run: 
 
 ```{bash}
-./kubernetes/cluster/kubectl.sh scale --replicas=3 rc/rslave-rc
+./kubernetes/cluster/kubectl.sh scale --replicas=3 rc/rworker-rc
 ```
 
-where this will create 3 new workers, running under the rslave-rc. Since the rslave-rc is built to query the redis service, we don't need to worry about setting it up as a service or accessing it externally. Instead, rslave-rc replicas (i.e. pods controlled and provisioned by rslave-rc) will signup with the redis service and have exclusive communication with it. 
+where this will create 3 new workers, running under the rworker-rc. Since the rworker-rc is built to query the redis service, we don't need to worry about setting it up as a service or accessing it externally. Instead, rworker-rc replicas (i.e. pods controlled and provisioned by rworker-rc) will signup with the redis service and have exclusive communication with it. 

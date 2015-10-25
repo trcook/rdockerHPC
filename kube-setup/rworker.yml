@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rworker-rc
+  labels:
+    name: rdocker-hpc-worker
+spec:
+  replicas: 1
+  selector:
+    name: rworker
+    # sets groups for load balancing
+  template:
+    metadata:
+      labels:
+        name: rworker
+        # pods will be named rworker-xxxxx where xxxxx is some random gibberish
+    spec:
+      containers:
+      - name: rdockerhpc-worker
+        image: trcook/rdockerhpc_worker
+
+
+
+

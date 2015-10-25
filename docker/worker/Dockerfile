@@ -1,5 +1,5 @@
 FROM trcook/rdockerhpc_master
-ADD ./Rprofile_slave /root/.Rprofile
+ADD ./Rprofile_worker /root/.Rprofile
 
 
 CMD R --no-save
